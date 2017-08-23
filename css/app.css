@@ -15,7 +15,7 @@ body {
 /* Custom page header */
 .header {
   padding-bottom: 1rem;
-  border-bottom: .05rem solid #e5e5e5;
+  border-bottom: .10rem solid #e5e5e5;
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -44,7 +44,7 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  border-bottom: .05rem solid #e5e5e5;
+  border-bottom: .1.5rem solid #e5e5e5;
 }
 .jumbotron .btn {
   padding: .75rem 1.5rem;
@@ -76,10 +76,4 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
-}
-
-.exp-legend {
-  width:inherit; /* Or auto */
-  padding:0 10px; /* To give a bit of padding on the left and right */
-  border-bottom:none;
 }
