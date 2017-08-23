@@ -34,7 +34,7 @@ body {
 /* Customize container */
 @media (min-width: 48em) {
   .container {
-    max-width: 46rem;
+    max-width: 100rem;
   }
 }
 .container-narrow > hr {
@@ -44,7 +44,8 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  border-bottom: .1.5rem solid #e5e5e5;
+  border-bottom: .1.5rem solid #d6e9c6;
+  background-color: #d6e9c6;
 }
 .jumbotron .btn {
   padding: .75rem 1.5rem;

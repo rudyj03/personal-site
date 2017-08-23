@@ -12,18 +12,21 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <ul class="nav navbar-nav">
+          <li class="nav-text">
+            <a href="#">Rudrasinh Jadeja</a>
+          </li>
           <li class="nav-item">
             <noscript>
             <a class="email" name="contact">rudyj03(at)gmail(dot)com</a>
           </noscript>
-            <a class="email" name="contact">rudyj03(at)gmail(dot)com</a>
+            <a class="email" target="_blank" name="contact">rudyj03(at)gmail(dot)com</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://www.github.com/rudyj03">Github</a>
+            <a class="nav-link" target="_blank" href="https://www.github.com/rudyj03">Github</a>
           </li>
         </ul>
       </div>
@@ -33,132 +36,148 @@
     <div class="jumbotron">
       <h1 class="display-3 center">Rudrasinh Jadeja</h1>
       <p class="lead">Welcome to my site!</p>
-      <noscript>
-        <a class="email" name="contact">rudyj03(at)gmail(dot)com</a>
-      </noscript>
-      <a class="email" name="contact">rudyj03(at)gmail(dot)com</a>
-      <p>
-        <a href="https://www.github.com/rudyj03">Github</a>
-      </p>
     </div>
 
 
     <div class="row marketing">
-      <div class="col-lg-6">
-        <h4>About me:</h4>
-        <p>
-          I've been a professional software engineer since 2007 working with a variety of web technologies and tools. I've been programming in general since 2000, somewhat anachronistically, I learned to program through QBASIC and I haven't stopped since.
-        </p>
-        <h4>Education:</h4>
-        <p>
-          University of Maryland College Park | B.S., Computer Science, Minor: ​Philosophy | May 2007 | GPA: ​3.1
-        </p>
-        <p>
-          Johns Hopkins University | M.S., Computer Science | ​May 2012 | GPA: ​3.8
-        </p>
-        <h4>Skills:</h4>
-        <h5>Programming Languages:</h5>
-        <span>Java, Ruby, Go, Javascript</span>
+      <div class="col-lg-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">About me:</div>
+          <div class="panel-body">
+            I've been a professional software engineer since 2007 working with a variety of web technologies and tools. I've been programming in general since 2000, somewhat anachronistically, I learned to program through QBASIC and I haven't stopped since.
+          </div>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">Education:</div>
+          <div class="panel-body">
+            <p>
+              University of Maryland College Park | B.S., Computer Science, Minor: ​Philosophy | May 2007 | GPA: ​3.1
+            </p>
+            <p>
+              Johns Hopkins University | M.S., Computer Science | ​May 2012 | GPA: ​3.8
+            </p>
+          </div>
+        </div>
 
-        <h5>Operating Systems:</h5>
-        <span>Unix, Linux, Windows</span>
+        <div class="panel panel-primary">
+          <div class="panel-heading">Skills:</div>
+          <div class="panel-body">
+            <div class="panel panel-info">
+              <div class="panel-heading">Programming Languages:</div>
+              <div class="panel-body">
+                Java, Ruby, Go, Javascript
+              </div>
+            </div>
+            <div class="panel panel-info">
+              <div class="panel-heading">Operating Systems:</div>
+              <div class="panel-body">
+                Unix, Linux, Windows
+              </div>
+            </div>
+            <div class="panel panel-info">
+              <div class="panel-heading">Application Servers:</div>
+              <div class="panel-body">
+                JBoss, Spring, Weblogic, Tomcat, Jetty, Websphere
+              </div>
+            </div>
+            <div class="panel panel-info">
+              <div class="panel-heading">Technologies/Tools:</div>
+              <div class="panel-body">
+                Servlets, JSP, jQuery, Backbone, React, Oracle, Derby, MySQL, Web services (SOAP and REST), Hibernate, Ehcache, Maven, Ant, XSLT, Git, Heroku
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <h5>Application Servers</h5>
-        <span>JBoss, Spring, Weblogic, Tomcat, Jetty, Websphere</span>
-
-        <h5>Technologies/Tools</h5>
-        <span>
-          Servlets, JSP, jQuery, Backbone, React, Oracle, Derby, MySQL,
-          Web services (SOAP and REST), Hibernate,
-          Ehcache, Maven, Ant, XSLT, Git, Heroku
-        </span>
-
-        <h4>Experience:</h4>
-        <fieldset>
-          <legend>KeyW 2/14 - Present</legend>
-          <span>Software Engineer</span>
-          <ul>
-            <li>Developing modernization of an existing J2EE application, while simultaneously maintaining legacy code.</li>
-            <li>Creating and maintaining bash and ruby scripts to aid in maintenance and migration from the legacy application.</li>
-            <li>Utilizing Splunk to monitor application metrics as well as troubleshooting via Splunk’s log management feature.</li>
-            <li>
-              Assisting in the implementation of Spring Data for database persistence, as well as Jersey for REST endpoint development to ease the transition from the legacy application.
-            </li>
-            <li>Developing and maintaining reusable front-end Javascript components to meet client UI needs.</li>
-            <li>Providing design guidance and implementation ideas to guide client vision and meet requirements.</li>
-          </ul>
-          <fieldset>
+        <div class="panel panel-primary">
+          <div class="panel-heading">Experience:</div>
+          <div class="panel-body">
             <fieldset>
-              <legend>Vertical Applications 11/12 - 2/14</legend>
-              <span>Senior Consultant</span>
-              <ul>
-                <li>
-                  Responsible for design, development and maintenance of a Case Management system utilizing a J2EE stack for backend services.
-                </li>
-                <li>
-                  Implemented various SOAP and REST based web services with endpoints exposed through Spring Web Services.
-                </li>
-                <li>
-                  Utilized Spring JMS to design and implement a standard approach to interface with IBM MQ usage across the project.
-                </li>
-                <li>
-                  Refactored existing JNDI lookup code to utilize Spring JNDI lookup for better abstraction and consistency.
-                </li>
-                <li>
-                  Developed a CI process with ant-based build and deployment scripts that utilized Jenkins to enable continuous integration.
-                </li>
-                <li>
-                  Utilized MySQL to stand up development environments quickly until a more permanent solution with Oracle was achieved.
-                </li>
-              </ul>
-            </fieldset>
-            <fieldset>
-              <legend>Raytheon 9/08 - 11/12</legend>
+              <legend>KeyW 2/14 - Present</legend>
               <span>Software Engineer</span>
               <ul>
+                <li>Developing modernization of an existing J2EE application, while simultaneously maintaining legacy code.</li>
+                <li>Creating and maintaining bash and ruby scripts to aid in maintenance and migration from the legacy application.</li>
+                <li>Utilizing Splunk to monitor application metrics as well as troubleshooting via Splunk’s log management feature.</li>
                 <li>
-                  Developed key aspects of a J2EE Enterprise Application using backend enterprise frameworks including Spring, Hibernate, Terracotta, and Ehcache deployed on JBoss.
+                  Assisting in the implementation of Spring Data for database persistence, as well as Jersey for REST endpoint development to ease the transition from the legacy application.
                 </li>
-                <li>
-                  Critical in a major rewrite of a core component of the system increasing the number of records ingested by millions per day
-                </li>
-                <li>
-                  Worked with Terracotta engineers as the main developer to help tune the system’s main distributed caching mechanism
-                </li>
-                <li>
-                  Developed areas of the frontend using Spring MVC, Dojo, and DWR as well as integrated that with the backend services
-                </li>
-                <li>
-                  Helped create and maintain Groovy scripts used for performance testing SOAP based web services.
-                </li>
-                <li>
-                  Created XSLTs and IBM’s DataPower processing rules for XML transformation
-                </li>
-                <li>
-                  Actively participated in the entire software development life-cycle from requirements analysis to development to test and finally client support
-                </li>
-                <li>
-                  Created build tasks and mentored developers in Maven and Jenkins continuous integration
-                </li>
+                <li>Developing and maintaining reusable front-end Javascript components to meet client UI needs.</li>
+                <li>Providing design guidance and implementation ideas to guide client vision and meet requirements.</li>
               </ul>
-            </fieldset>
-            <fieldset>
-              <legend>Infosys Technologies 7/07 - 9/08</legend>
-              <span>Software Engineer</span>
-              <ul>
-                <li>Underwent a three-month foundation-training program in Mysore, India that focused on building enterprise applications with the use of J2EE and Enterprise Java Beans. Completed the training program with a CGPA of 4.8 out of 5.0
-                </li>
-                <li>
-                  Participated in software production on a team project for the Communications Multimedia and Entertainment (CME) department in Chennai, India. Responsibilities included collaborating with a global team to maintain, enhance and deliver software as per client
-                  needs.
-                </li>
-              </ul>
-            </fieldset>
+              <fieldset>
+                <fieldset>
+                  <legend>Vertical Applications 11/12 - 2/14</legend>
+                  <span>Senior Consultant</span>
+                  <ul>
+                    <li>
+                      Responsible for design, development and maintenance of a Case Management system utilizing a J2EE stack for backend services.
+                    </li>
+                    <li>
+                      Implemented various SOAP and REST based web services with endpoints exposed through Spring Web Services.
+                    </li>
+                    <li>
+                      Utilized Spring JMS to design and implement a standard approach to interface with IBM MQ usage across the project.
+                    </li>
+                    <li>
+                      Refactored existing JNDI lookup code to utilize Spring JNDI lookup for better abstraction and consistency.
+                    </li>
+                    <li>
+                      Developed a CI process with ant-based build and deployment scripts that utilized Jenkins to enable continuous integration.
+                    </li>
+                    <li>
+                      Utilized MySQL to stand up development environments quickly until a more permanent solution with Oracle was achieved.
+                    </li>
+                  </ul>
+                </fieldset>
+                <fieldset>
+                  <legend>Raytheon 9/08 - 11/12</legend>
+                  <span>Software Engineer</span>
+                  <ul>
+                    <li>
+                      Developed key aspects of a J2EE Enterprise Application using backend enterprise frameworks including Spring, Hibernate, Terracotta, and Ehcache deployed on JBoss.
+                    </li>
+                    <li>
+                      Critical in a major rewrite of a core component of the system increasing the number of records ingested by millions per day
+                    </li>
+                    <li>
+                      Worked with Terracotta engineers as the main developer to help tune the system’s main distributed caching mechanism
+                    </li>
+                    <li>
+                      Developed areas of the frontend using Spring MVC, Dojo, and DWR as well as integrated that with the backend services
+                    </li>
+                    <li>
+                      Helped create and maintain Groovy scripts used for performance testing SOAP based web services.
+                    </li>
+                    <li>
+                      Created XSLTs and IBM’s DataPower processing rules for XML transformation
+                    </li>
+                    <li>
+                      Actively participated in the entire software development life-cycle from requirements analysis to development to test and finally client support
+                    </li>
+                    <li>
+                      Created build tasks and mentored developers in Maven and Jenkins continuous integration
+                    </li>
+                  </ul>
+                </fieldset>
+                <fieldset>
+                  <legend>Infosys Technologies 7/07 - 9/08</legend>
+                  <span>Software Engineer</span>
+                  <ul>
+                    <li>Underwent a three-month foundation-training program in Mysore, India that focused on building enterprise applications with the use of J2EE and Enterprise Java Beans. Completed the training program with a CGPA of 4.8 out of 5.0
+                    </li>
+                    <li>
+                      Participated in software production on a team project for the Communications Multimedia and Entertainment (CME) department in Chennai, India. Responsibilities included collaborating with a global team to maintain, enhance and deliver software as per client
+                      needs.
+                    </li>
+                  </ul>
+                </fieldset>
+          </div>
+        </div>
       </div>
     </div>
 
     <footer class="footer">
-      <a href="https://www.github.com/rudyj03">Github</a>
     </footer>
 
   </div>
@@ -169,7 +188,6 @@
   <script src="js/bootstrap.min.js"></script>
   <script>
     $('.email').attr('href', 'mailto:rudyj03@gmail.com');
-    $('.email').attr('target', '_blank');
   </script>
 </body>
 
