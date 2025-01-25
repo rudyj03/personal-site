@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Inventory</title>
+    <script>
+        async function loadProducts() {
+            const response = await fetch('products.json');
+            const products = await response.json();
+            
+            const container = document.getElementById('products');
+            container.innerHTML = ''; // Clear previous products
+            
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+                productDiv.innerHTML = `
+                    <h2>${product.title}</h2>
+                    <img src="${product.image}" alt="${product.title}" style="max-width: 300px;">
+                    <p>Total Inventory: ${product.totalInventory}</p>
+                `;
+                container.appendChild(productDiv);
+            });
+        }
+
+        // Load products when page loads
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; }
+        .product { border: 1px solid #ddd; margin: 10px 0; padding: 10px; text-align: center; }
+        img { max-height: 300px; object-fit: contain; }
+    </style>
+</head>
+<body>
+    <h1>Product Inventory</h1>
+    <div id="products"></div>
+</body>
+</html>
