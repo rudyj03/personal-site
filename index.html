@@ -1,392 +1,656 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rudrasinh Jadeja — Senior Software Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0f;
+      --surface: #15151a;
+      --surface2: #1d1d24;
+      --border: #2a2a35;
+      --accent: #c8a96e;
+      --accent2: #7eb8d4;
+      --text: #e8e8ee;
+      --text-muted: #888899;
+      --text-dim: #555566;
+    }
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/app.css">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 15px;
+      min-height: 100vh;
+    }
+
+    /* Background texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(ellipse at 20% 10%, rgba(200,169,110,0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 90%, rgba(126,184,212,0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13,13,15,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-contact {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .nav-contact a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-contact a:hover { color: var(--accent); }
+
+    .nav-contact svg { width: 18px; height: 18px; }
+
+    /* MAIN */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 32px 80px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 60px 0 80px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 80px;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      max-width: 560px;
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 72px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ABOUT */
+    .about-text {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.85;
+      max-width: 680px;
+    }
+
+    /* EDUCATION */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .edu-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      main { padding: 100px 20px 60px; }
+    }
+
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      transition: border-color 0.2s;
+    }
+    .edu-card:hover { border-color: var(--accent); }
+
+    .edu-card .degree {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .edu-card .school {
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .edu-card .details {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .edu-card .gpa {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--accent2);
+      background: rgba(126,184,212,0.08);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+
+    /* EXPERIENCE */
+    .job {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 48px;
+    }
+
+    .job::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .job::after {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 20px;
+      width: 1px;
+      bottom: -24px;
+      background: var(--border);
+    }
+
+    .job:last-child::after { display: none; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .job-company {
+      font-family: 'DM Serif Display', serif;
+      font-size: 19px;
+      color: var(--text);
+    }
+
+    .job-date {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding-top: 4px;
+    }
+
+    .job-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .job-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .job-bullets li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .job-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--text-dim);
+      font-size: 12px;
+      top: 1px;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+
+    .skill-group-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 10px;
+    }
+
+    /* CERTS */
+    .cert-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cert-badge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 24px;
+      font-size: 14px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .cert-badge:hover { border-color: var(--accent); color: var(--accent); }
+
+    .cert-badge svg { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero { animation: fadeUp 0.7s ease both; }
+    section { animation: fadeUp 0.7s ease both; }
+    section:nth-child(2) { animation-delay: 0.1s; }
+    section:nth-child(3) { animation-delay: 0.15s; }
+    section:nth-child(4) { animation-delay: 0.2s; }
+    section:nth-child(5) { animation-delay: 0.25s; }
+  </style>
 </head>
-
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="#"><h5>Rudrasinh Jadeja</h5></a></li>
-          <li>
-            <a title="Github" target="_blank" href="https://www.github.com/rudyj03">
-              <i class="fa fa-2x fa-github-square"></i>
-            </a>
-          </li>
-          <li>
-            <noscript>
-              <a class="email" name="contact">rudyj03(at)gmail(dot)com</a>
-            </noscript>
-            <a class="email" title="Email" target="_blank" name="contact">
-                <i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="jumbotron">
-      <h1 class="display-3 center">Rudrasinh Jadeja</h1>
-    </div>
 
-    <div class="row marketing">
-      <div class="col-lg-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading">About me:</div>
-          <div class="panel-body">
-            Hi there!  I've been a professional software engineer since 2007 working with a variety of web technologies and tools. I've been programming in general since 2000. I've worked on multiple large scale enterprise applications as a full-stack engineer. I've also done
-            DevOps as the need arises, including creating automated CI/CD pipelines and application health monitoring.
-          </div>
-        </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">Education:</div>
-          <div class="panel-body">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="panel-title">
-                  <h5>University of Maryland College Park, May 2007</h5>
-                </div>
-              </div>
-              <div class="panel-body">
-                <p>B.S., Computer Science, Minor in Philolsophy</p>
-                <p>GPA: 3.1</p>
-              </div>
-            </div>
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="panel-title">
-                  <h5>Johns Hopkins University, May 2012</h5>
-                </div>
-              </div>
-              <div class="panel-body">
-                <p>M.S., Computer Science</p>
-                <p>GPA: 3.8</p>
-              </div>
-            </div>
-          </div>
-        </div>
+<nav>
+  <span class="nav-name">Rudrasinh Jadeja</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+  <div class="nav-contact">
+    <a href="https://www.github.com/rudyj03" target="_blank" title="GitHub" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.393.1 2.646.64.698 1.026 1.59 1.026 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+    </a>
+    <a href="mailto:rudyj03@gmail.com" title="Email" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+    </a>
+  </div>
+</nav>
 
-        <div class="panel panel-primary">
-          <div class="panel-heading">Experience:</div>
-          <div class="panel-body">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="panel-title">
-                  <h5>Maryland Research 8/21 - Present</h5>
-                </div>
-              </div>
-              <div class="panel-body">
-                <span>Senior Software Engineer</span>
-                <ul>
-                  <li>Developing and maintaining Kubernetes clusters across various environments both on public and air-gapped networks.</li>
-                  <li>Implementing infrastructure-as-code to provision kubernetes clusters with Terraform and Ansible.</li>
-                  <li>Developing microservices with Spring Boot to deploy to Kubernetes via GitOps.</li>
-                  <li>Leading a 10 person devops team to develop and prioritize processes/deployment models for the larger development team.</li>
-                  <li>Assisting other development teams in their transition from a legacy container orchestration platform to Kubernetes.</li>
-                  <li>Mentoring junior developers and devops professionals.</li>
-                </ul>
-              </div>
-            </div>
-          <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="panel-title">
-                  <h5>Applied Insight 11/17 - 8/21</h5>
-                </div>
-              </div>
-              <div class="panel-body">
-                <span>Senior Cloud Software Engineer</span>
-                <ul>
-                  <li>Developed software to automate the provisioning and maintenance of AWS/Azure accounts and resources across a 4000+ user base.</li>
-                  <li>Analyzed AWS and Azure services and providing IAM permissions restrictions per customer security requirements.</li>
-                  <li>Implemented infrastructure-as-code to provision kubernetes clusters with Terraform and Ansible.</li>
-                  <li>Developed NiFi Processors to perform various ETL processes on large datasets.</li>
-                  <li>Implemented MapReduce jobs for batch data analysis across multiple terabyte sized Accumulo clusters.</li>
-                  <li>Implemented a real-time streaming solution via Apache Storm to perform analysis on a stream of 50 terabytes of data per day.</li>
-                  <li>Containerized existing applications and orchestrated them with Kubernetes.</li>
-                  <li>Orchestrated Kubernetes clusters through Rancher for ease of administration across the development team.</li>
-                  <li>Led team adoption from a monolith architecture to a microservice oriented one.</li>                  
-                  <li>Created various React UI prototypes for quick customer engagement and feedback.</li>
-                  <li>Utilized CI/CD pipelines using Jenkins as well as Gitlab CI/CD for more robust and automated build, test and deploy cycles.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="panel-title">
-                  <h5>KeyW 2/14 - 11/17</h5>
-                </div>
-              </div>
-              <div class="panel-body">
-                <span>Software Engineer</span>
-                <ul>
-                  <li>Developed modernization of an existing J2EE application, while simultaneously maintaining legacy code.</li>
-                  <li>Created and maintaining bash and ruby scripts to aid in maintenance and migration from the legacy application.</li>
-                  <li>Utilized Splunk to monitor application metrics as well as troubleshooting via Splunk’s log management feature.</li>
-                  <li>Developed and mainting custom build and deployment toolchain via TeamCity.</li>
-                  <li>
-                    Assisted in the implementation of Spring Data for database persistence, as well as Jersey for REST endpoint development to ease the transition from the legacy application.
-                  </li>
-                  <li>Developed and maintaining reusable front-end Javascript components to meet client UI needs.</li>
-                  <li>Provided design guidance and implementation ideas to guide client vision and meet requirements.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="panel-title">
-                  <h5>Vertical Applications 11/12 - 2/14</h5></div>
-              </div>
-              <div class="panel-body">
-                <span>Senior Consultant</span>
-                <ul>
-                  <li>
-                    Responsible for design, development and maintenance of a Case Management system utilizing a J2EE stack for backend services.
-                  </li>
-                  <li>
-                    Implemented various SOAP and REST based web services with endpoints exposed through Spring Web Services.
-                  </li>
-                  <li>
-                    Utilized Spring JMS to design and implement a standard approach to interface with IBM MQ usage across the project.
-                  </li>
-                  <li>
-                    Refactored existing JNDI lookup code to utilize Spring JNDI lookup for better abstraction and consistency.
-                  </li>
-                  <li>
-                    Developed a CI process with ant-based build and deployment scripts that utilized Jenkins to enable continuous integration.
-                  </li>
-                  <li>
-                    Utilized MySQL to stand up development environments quickly until a more permanent solution with Oracle was achieved.
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="panel-title">
-                  <h5>Raytheon 9/08 - 11/12</h5></div>
-              </div>
-              <div class="panel-body">
-                <span>Software Engineer</span>
-                <ul>
-                  <li>
-                    Developed key aspects of a J2EE Enterprise Application using backend enterprise frameworks including Spring, Hibernate, Terracotta, and Ehcache deployed on JBoss.
-                  </li>
-                  <li>
-                    Critical in a major rewrite of a core component of the system increasing the number of records ingested by millions per day
-                  </li>
-                  <li>
-                    Worked with Terracotta engineers as the main developer to help tune the system’s main distributed caching mechanism
-                  </li>
-                  <li>
-                    Developed areas of the frontend using Spring MVC, Dojo, and DWR as well as integrated that with the backend services
-                  </li>
-                  <li>
-                    Helped create and maintain Groovy scripts used for performance testing SOAP based web services.
-                  </li>
-                  <li>
-                    Created XSLTs and IBM’s DataPower processing rules for XML transformation
-                  </li>
-                  <li>
-                    Actively participated in the entire software development life-cycle from requirements analysis to development to test and finally client support
-                  </li>
-                  <li>
-                    Created build tasks and mentored developers in Maven and Jenkins continuous integration
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="panel-title">
-                  <h5>Infosys Technologies 7/07 - 9/08</h5></div>
-              </div>
-              <div class="panel-body">
-                <span>Software Engineer</span>
-                <ul>
-                  <li>Underwent a three-month foundation-training program in Mysore, India that focused on building enterprise applications with the use of J2EE and Enterprise Java Beans. Completed the training program with a CGPA of 4.8 out of 5.0
-                  </li>
-                  <li>
-                    Participated in software production on a team project for the Communications Multimedia and Entertainment (CME) department in Chennai, India. Responsibilities included collaborating with a global team to maintain, enhance and deliver software as per client
-                    needs.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel panel-primary">
-            <div class="panel-heading">Skills:</div>
-            <div class="panel-body">
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <div class="panel-title">
-                    <h5>Programming Languages:</h5>
-                  </div>
-                </div>
-                <div class="panel-body">
-                  <ul>
-                    <li> Java </li>
-                    <li> Ruby </li>
-                    <li> Python</li>
-                    <li> Go </li>
-                    <li> Javascript</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <div class="panel-title">
-                    <h5>Operating Systems:</h5>
-                  </div>
-                </div>
-                <div class="panel-body">
-                  <ul>
-                    <li>Unix</li>
-                    <li>Linux</li>
-                    <li>Windows</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <div class="panel-title">
-                    <h5>Technologies/Tools:</h5>
-                  </div>
-                </div>
-                <div class="panel-body">
-                  <ul>
-                    <li>React</li>
-                    <li>Backbone</li>
-                    <li>Angular</li>
-                    <li>jQuery</li>
-                    <li>Spring (various components including MVC, Data, AOP)</li>                 
-                    <li>Oracle</li>
-                    <li>Derby</li>
-                    <li>MySQL</li>
-                    <li>Postgresql</li>
-                    <li>Web services (SOAP and REST)</li>
-                    <li>XSLT</li>
-                    <li>Hibernate</li>
-                    <li>Ehcache</li>
-                    <li>Maven</li>
-                    <li>Ant</li>
-                    <li>Git</li>
-                    <li>Heroku</li>
-                    <li>Jenkins</li>
-                    <li>TeamCity</li>
-                    <li>Docker</li>
-                    <li>Kubernetes</li>
-                    <li>Rancher</li>
-                    <li>Apache NiFi</li>
-                    <li>Apache Storm</li>
-                    <li>Hadoop</li>
-                    <li>Accumulo</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <div class="panel-title">
-                    <h5>Certifications</h5>
-                  </div>
-                </div>
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <a href="#" data-toggle="modal" data-target=".dialog1">
-                        <img src="certs/dev-associate-small.png" width="150" class="img-responsive img-rounded center-block" alt="" />
-                      </a>
-                    </div>
-                    <div class="col-md">
-                      <a href="#" data-toggle="modal" data-target=".dialog2">
-                        <img src="certs/devops-professional-small.png" width="150" class="img-responsive img-rounded center-block" alt="" />
-                      </a>
-                    </div>
-                    <div class="modal fade dialog1" tabindex="-1">
-                      <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                                <h4 class="modal-title" id="myLargeModalLabel-1">AWS Certified Developer - Associate</h4>
-                            </div>
-                            <div class="modal-body active">
-                                <img src="certs/dev-associate.png" class="img-responsive img-rounded center-block" alt="" />
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal fade dialog2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-2" aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
-                          <div class="modal-content">
-                              <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                                  <h4 class="modal-title" id="myLargeModalLabel-2">AWS Certified DevOps Engineer - Professional</h4>
-                              </div>
-                              <div class="modal-body">
-                                  <img src="certs/devops-professional.png" class="img-responsive img-rounded center-block" alt="" />
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-      </div>
-    </div>
-
-    <footer class="footer">
-    </footer>
-
+<main>
+  <div class="hero">
+    <p class="hero-eyebrow">Senior Software Engineer</p>
+    <h1>Rudrasinh<br><em>Jadeja</em></h1>
+    <p class="hero-desc">Full-stack engineer with 17+ years of experience building large-scale enterprise applications, cloud infrastructure, and distributed systems. Passionate about delivering reliable, scalable software and cultivating high-performing engineering teams.</p>
   </div>
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script>
-    $('.email').attr('href', 'mailto:rudyj03@gmail.com');
-  </script>
-  <script>
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <p class="about-text">
+      I have been a professional software engineer since 2007, working across the full stack with a diverse range of web technologies and tools. My career has spanned large-scale enterprise application development, cloud infrastructure automation, and real-time data processing at scale. Beyond individual contribution, I bring experience leading DevOps teams, designing CI/CD pipelines, and architecting infrastructure-as-code solutions — always with an eye toward reliability, maintainability, and developer productivity.
+    </p>
+  </section>
 
-    ga('create', 'UA-105238540-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">Education</p>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="degree">B.S., Computer Science</div>
+        <div class="school">University of Maryland, College Park</div>
+        <div class="details">Minor in Philosophy &nbsp;·&nbsp; May 2007</div>
+        <span class="gpa">GPA 3.1</span>
+      </div>
+      <div class="edu-card">
+        <div class="degree">M.S., Computer Science</div>
+        <div class="school">Johns Hopkins University</div>
+        <div class="details">May 2012</div>
+        <span class="gpa">GPA 3.8</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Maryland Research</span>
+        <span class="job-date">Aug 2021 – Present</span>
+      </div>
+      <div class="job-title">Senior Software Engineer</div>
+      <ul class="job-bullets">
+        <li>Design, develop, and maintain Kubernetes clusters across both public-cloud and air-gapped network environments.</li>
+        <li>Implement infrastructure-as-code solutions to provision Kubernetes clusters using Terraform and Ansible.</li>
+        <li>Develop microservices with Spring Boot, deployed to Kubernetes via GitOps workflows.</li>
+        <li>Lead a 10-person DevOps team in developing and prioritizing deployment models and operational processes for the broader engineering organization.</li>
+        <li>Facilitate and guide other development teams in their migration from a legacy container orchestration platform to Kubernetes.</li>
+        <li>Mentor junior engineers and DevOps professionals, fostering a culture of continuous learning and best practices.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Applied Insight</span>
+        <span class="job-date">Nov 2017 – Aug 2021</span>
+      </div>
+      <div class="job-title">Senior Cloud Software Engineer</div>
+      <ul class="job-bullets">
+        <li>Developed software to automate the provisioning and ongoing maintenance of AWS and Azure accounts and resources across a 4,000+ user base.</li>
+        <li>Analyzed AWS and Azure services and defined IAM permission restrictions aligned with customer security requirements.</li>
+        <li>Implemented infrastructure-as-code solutions for Kubernetes cluster provisioning using Terraform and Ansible.</li>
+        <li>Developed Apache NiFi processors to perform a variety of ETL operations on large-scale datasets.</li>
+        <li>Implemented MapReduce jobs for batch data analysis across multi-terabyte Accumulo clusters.</li>
+        <li>Architected a real-time streaming pipeline using Apache Storm to perform analysis on approximately 50 TB of data per day.</li>
+        <li>Containerized existing applications and orchestrated them with Kubernetes, managed through Rancher for streamlined administration.</li>
+        <li>Led the team's architectural transition from a monolithic application to a microservice-oriented design.</li>
+        <li>Created React UI prototypes to facilitate rapid customer engagement and iterative feedback cycles.</li>
+        <li>Managed CI/CD pipelines using Jenkins and GitLab CI/CD for automated build, test, and deployment workflows.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">KeyW</span>
+        <span class="job-date">Feb 2014 – Nov 2017</span>
+      </div>
+      <div class="job-title">Software Engineer</div>
+      <ul class="job-bullets">
+        <li>Led the modernization of a large-scale J2EE enterprise application while maintaining the existing legacy codebase in parallel.</li>
+        <li>Authored and maintained Bash and Ruby scripts to support system maintenance and facilitate migration from the legacy platform.</li>
+        <li>Utilized Splunk for application metrics monitoring and log management to support troubleshooting and operational visibility.</li>
+        <li>Developed and maintained a custom build and deployment toolchain using TeamCity.</li>
+        <li>Assisted in implementing Spring Data for database persistence and Jersey for REST endpoint development to ease the transition from the legacy stack.</li>
+        <li>Designed and maintained reusable front-end JavaScript components tailored to evolving client UI requirements.</li>
+        <li>Provided design guidance and contributed implementation recommendations to align engineering deliverables with client vision.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Vertical Applications</span>
+        <span class="job-date">Nov 2012 – Feb 2014</span>
+      </div>
+      <div class="job-title">Senior Consultant</div>
+      <ul class="job-bullets">
+        <li>Responsible for the design, development, and maintenance of a Case Management system built on a J2EE backend stack.</li>
+        <li>Implemented both SOAP and REST web services with endpoints exposed through Spring Web Services.</li>
+        <li>Designed and implemented a standardized approach to IBM MQ integration using Spring JMS across the project.</li>
+        <li>Refactored legacy JNDI lookup code to use Spring JNDI for improved abstraction and consistency.</li>
+        <li>Established a continuous integration process using Ant-based build and deployment scripts orchestrated through Jenkins.</li>
+        <li>Leveraged MySQL to rapidly provision development environments in advance of a permanent Oracle-based solution.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Raytheon</span>
+        <span class="job-date">Sep 2008 – Nov 2012</span>
+      </div>
+      <div class="job-title">Software Engineer</div>
+      <ul class="job-bullets">
+        <li>Developed key components of a J2EE enterprise application utilizing Spring, Hibernate, Terracotta, and Ehcache on JBoss.</li>
+        <li>Played a critical role in a major rewrite of a core system component, significantly increasing the volume of records ingested daily by millions of records.</li>
+        <li>Collaborated directly with Terracotta engineers as the primary developer to tune the system's distributed caching mechanism.</li>
+        <li>Developed front-end features using Spring MVC, Dojo, and DWR and integrated them with backend services.</li>
+        <li>Authored and maintained Groovy scripts for performance testing of SOAP-based web services.</li>
+        <li>Created XSLTs and IBM DataPower processing rules for XML transformation workflows.</li>
+        <li>Actively participated in the full software development lifecycle, from requirements analysis through development, testing, and client support.</li>
+        <li>Authored Maven build tasks and mentored developers on CI best practices using Jenkins.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Infosys Technologies</span>
+        <span class="job-date">Jul 2007 – Sep 2008</span>
+      </div>
+      <div class="job-title">Software Engineer</div>
+      <ul class="job-bullets">
+        <li>Completed a rigorous three-month foundation training program in Mysore, India, focused on enterprise application development using J2EE and Enterprise JavaBeans — finishing with a cumulative GPA of 4.8 out of 5.0.</li>
+        <li>Contributed to software production for the Communications, Multimedia, and Entertainment (CME) department in Chennai, India, collaborating with a global team to maintain, enhance, and deliver software in accordance with client requirements.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <p class="skill-group-title">Languages</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Go</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Ruby</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Frontend</p>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Angular</span>
+          <span class="skill-tag">Backbone</span>
+          <span class="skill-tag">jQuery</span>
+          <span class="skill-tag">XSLT</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Backend & Data</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Spring</span>
+          <span class="skill-tag">Hibernate</span>
+          <span class="skill-tag">REST / SOAP</span>
+          <span class="skill-tag">Apache NiFi</span>
+          <span class="skill-tag">Apache Storm</span>
+          <span class="skill-tag">Hadoop</span>
+          <span class="skill-tag">Accumulo</span>
+          <span class="skill-tag">Ehcache</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Databases</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Oracle</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Derby</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Cloud & Infrastructure</p>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Azure</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Terraform</span>
+          <span class="skill-tag">Ansible</span>
+          <span class="skill-tag">Rancher</span>
+          <span class="skill-tag">Heroku</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">DevOps & Tooling</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">GitLab CI/CD</span>
+          <span class="skill-tag">TeamCity</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Maven</span>
+          <span class="skill-tag">Ant</span>
+          <span class="skill-tag">Splunk</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Operating Systems</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Unix</span>
+          <span class="skill-tag">Windows</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Certifications</p>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS Certified Developer – Associate</span>
+          <span class="skill-tag">AWS Certified DevOps Engineer – Professional</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Rudrasinh Jadeja &nbsp;·&nbsp; <a href="mailto:rudyj03@gmail.com" style="color: var(--accent); text-decoration:none;">rudyj03@gmail.com</a> &nbsp;·&nbsp; <a href="https://github.com/rudyj03" target="_blank" style="color: var(--accent); text-decoration:none;">github.com/rudyj03</a></p>
+</footer>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-105238540-1', 'auto');
+  ga('send', 'pageview');
+</script>
 </body>
-
 </html>
