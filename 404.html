@@ -1,241 +1,375 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #050a1a;
-    color: #e8f0fe;
-    font-family: 'Courier New', monospace;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-  }
-  canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-  }
-  .content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 2rem;
-  }
-  .error-code {
-    font-size: 120px;
-    font-weight: 700;
-    color: #7dd3fc;
-    letter-spacing: -4px;
-    line-height: 1;
-    text-shadow: 0 0 40px rgba(125,211,252,0.3);
-    font-family: 'Courier New', monospace;
-  }
-  .signal-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    margin: 1rem 0;
-  }
-  .signal-bar span {
-    font-size: 11px;
-    color: #ef4444;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-  .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #ef4444;
-    animation: blink 1.2s ease-in-out infinite;
-  }
-  .dot:nth-child(2) { animation-delay: 0.2s; }
-  .dot:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.1; }
-  }
-  .headline {
-    font-size: 22px;
-    color: #bae6fd;
-    margin: 1rem 0 0.5rem;
-    letter-spacing: 1px;
-    font-family: 'Courier New', monospace;
-  }
-  .subtext {
-    font-size: 13px;
-    color: #64748b;
-    line-height: 1.8;
-    max-width: 380px;
-    margin: 0 auto 2rem;
-    font-family: 'Courier New', monospace;
-  }
-  .subtext span {
-    color: #7dd3fc;
-  }
-  .home-btn {
-    display: inline-block;
-    padding: 12px 32px;
-    border: 1px solid #7dd3fc;
-    color: #7dd3fc;
-    text-decoration: none;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    background: transparent;
-    cursor: pointer;
-  }
-  .home-btn:hover {
-    background: rgba(125,211,252,0.1);
-  }
-  .coordinates {
-    margin-top: 2.5rem;
-    font-size: 10px;
-    color: #1e3a5f;
-    letter-spacing: 1px;
-    font-family: 'Courier New', monospace;
-  }
-  .scanline {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 2px;
-    background: rgba(125,211,252,0.06);
-    z-index: 2;
-    pointer-events: none;
-    animation: scan 8s linear infinite;
-  }
-  @keyframes scan {
-    0% { top: -2px; }
-    100% { top: 100vh; }
-  }
-  .astronaut {
-    font-size: 48px;
-    margin-bottom: 1rem;
-    display: block;
-    animation: drift 6s ease-in-out infinite;
-  }
-  @keyframes drift {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-16px) rotate(5deg); }
-  }
-</style>
+	<meta charset="UTF-8">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			background: #050a1a;
+			color: #e8f0fe;
+			font-family: 'Courier New', monospace;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			position: relative;
+		}
+
+		canvas {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
+		}
+
+		.content {
+			position: relative;
+			z-index: 1;
+			text-align: center;
+			padding: 2rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.error-code {
+			font-size: 120px;
+			font-weight: 700;
+			color: #7dd3fc;
+			letter-spacing: -4px;
+			line-height: 1;
+			text-shadow: 0 0 40px rgba(125, 211, 252, 0.3);
+			font-family: 'Courier New', monospace;
+		}
+
+		.signal-bar {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 6px;
+			margin: 1rem 0;
+		}
+
+		.signal-bar span {
+			font-size: 11px;
+			color: #ef4444;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+		}
+
+		.dot {
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: #ef4444;
+			animation: blink 1.2s ease-in-out infinite;
+		}
+
+		.dot:nth-child(2) {
+			animation-delay: 0.2s;
+		}
+
+		.dot:nth-child(3) {
+			animation-delay: 0.4s;
+		}
+
+		@keyframes blink {
+
+			0%,
+			100% {
+				opacity: 1;
+			}
+
+			50% {
+				opacity: 0.1;
+			}
+		}
+
+		.headline {
+			font-size: 22px;
+			color: #bae6fd;
+			margin: 1rem 0 0.5rem;
+			letter-spacing: 1px;
+			font-family: 'Courier New', monospace;
+		}
+
+		.subtext {
+			font-size: 13px;
+			color: #64748b;
+			line-height: 1.8;
+			max-width: 380px;
+			margin: 0 auto 2rem;
+			font-family: 'Courier New', monospace;
+		}
+
+		.subtext span {
+			color: #7dd3fc;
+		}
+
+		.home-btn {
+			display: inline-block;
+			padding: 12px 32px;
+			border: 1px solid #7dd3fc;
+			color: #7dd3fc;
+			text-decoration: none;
+			font-family: 'Courier New', monospace;
+			font-size: 13px;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			transition: all 0.2s;
+			background: transparent;
+			cursor: pointer;
+		}
+
+		.home-btn:hover {
+			background: rgba(125, 211, 252, 0.1);
+		}
+
+		.iss-panel {
+			margin-bottom: 1.5rem;
+			border: 1px solid #0f2a4a;
+			padding: 14px 24px;
+			display: inline-block;
+			min-width: 340px;
+		}
+
+		.iss-header {
+			font-size: 10px;
+			color: #1e3a5f;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			margin-bottom: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.iss-live {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			color: #22c55e;
+		}
+
+		.iss-live-dot {
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+			background: #22c55e;
+			animation: blink 1.5s ease-in-out infinite;
+		}
+
+		.iss-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 8px 24px;
+		}
+
+		.iss-stat {
+			text-align: left;
+		}
+
+		.iss-label {
+			font-size: 9px;
+			color: #1e3a5f;
+			letter-spacing: 1.5px;
+			text-transform: uppercase;
+			margin-bottom: 2px;
+		}
+
+		.iss-value {
+			font-size: 13px;
+			color: #7dd3fc;
+			font-family: 'Courier New', monospace;
+		}
+
+		.astronaut {
+			font-size: 48px;
+			margin-bottom: 1rem;
+			display: block;
+			animation: drift 6s ease-in-out infinite;
+		}
+
+		@keyframes drift {
+
+			0%,
+			100% {
+				transform: translateY(0) rotate(-5deg);
+			}
+
+			50% {
+				transform: translateY(-16px) rotate(5deg);
+			}
+		}
+
+		.scanline {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background: rgba(125, 211, 252, 0.06);
+			z-index: 2;
+			pointer-events: none;
+			animation: scan 8s linear infinite;
+		}
+
+		@keyframes scan {
+			0% {
+				top: -2px;
+			}
+
+			100% {
+				top: 100vh;
+			}
+		}
+	</style>
 </head>
+
 <body>
-<canvas id="stars"></canvas>
-<div class="scanline"></div>
-<div class="content">
-  <span class="astronaut">🧑‍🚀</span>
-  <div class="error-code">404</div>
-  <div class="signal-bar">
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <span>signal lost</span>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-  </div>
-  <div class="headline">PAGE NOT FOUND</div>
-  <p class="subtext">
-    Uh-oh<br>
-    The page at <span id="path-display">/unknown</span> drifted into<br>
-    deep space and hasn't been seen since.
-  </p>
-  <a href="/" class="home-btn">→ Return to base</a>
-  <div class="coordinates" id="coords">
-    COORD: 0.000°N 0.000°E · ALT: 408km · SIGNAL: 0%
-  </div>
-</div>
+	<canvas id="stars"></canvas>
+	<div class="scanline"></div>
+	<div class="content">
+		<span class="astronaut">🧑‍🚀</span>
+		<div class="error-code">404</div>
+		<div class="signal-bar">
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<span>signal lost</span>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+		</div>
+		<div class="headline">PAGE NOT FOUND</div>
+		<p class="subtext">
+			Houston, we have a problem.<br>
+			The page at <span id="path-display">/unknown</span> couldn't be found.
+		</p>
+		<p class="subtext">
+			While you're here — the ISS is somewhere up there right now.
+		</p>
+		<div class="iss-panel">
+			<div class="iss-header">
+				<span>ISS · Live Telemetry</span>
+				<span class="iss-live"><span class="iss-live-dot"></span>live</span>
+			</div>
+			<div class="iss-grid">
+				<div class="iss-stat">
+					<div class="iss-label">Latitude</div>
+					<div class="iss-value" id="iss-lat">—</div>
+				</div>
+				<div class="iss-stat">
+					<div class="iss-label">Longitude</div>
+					<div class="iss-value" id="iss-lon">—</div>
+				</div>
+				<div class="iss-stat">
+					<div class="iss-label">Altitude</div>
+					<div class="iss-value" id="iss-alt">—</div>
+				</div>
+				<div class="iss-stat">
+					<div class="iss-label">Velocity</div>
+					<div class="iss-value" id="iss-vel">—</div>
+				</div>
+			</div>
+		</div>
+		<a href="/" class="home-btn">→ Return to base</a>
+	</div>
 
-<script>
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
+	<script>
+		const canvas = document.getElementById('stars');
+		const ctx = canvas.getContext('2d');
 
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', resize);
+		function resize() {
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+		}
+		resize();
+		window.addEventListener('resize', resize);
 
-const stars = Array.from({length: 200}, () => ({
-  x: Math.random(),
-  y: Math.random(),
-  r: Math.random() * 1.5 + 0.3,
-  a: Math.random(),
-  speed: Math.random() * 0.004 + 0.001
-}));
+		const stars = Array.from({ length: 200 }, () => ({
+			x: Math.random(),
+			y: Math.random(),
+			r: Math.random() * 1.5 + 0.3,
+			a: Math.random(),
+			speed: Math.random() * 0.004 + 0.001
+		}));
 
-const shootingStars = [];
+		const shootingStars = [];
+		function addShootingStar() {
+			shootingStars.push({
+				x: Math.random() * canvas.width,
+				y: Math.random() * canvas.height * 0.4,
+				len: Math.random() * 80 + 40,
+				speed: Math.random() * 4 + 3,
+				alpha: 1,
+				angle: Math.PI / 6
+			});
+		}
+		setInterval(addShootingStar, 4000);
 
-function addShootingStar() {
-  shootingStars.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height * 0.4,
-    len: Math.random() * 80 + 40,
-    speed: Math.random() * 4 + 3,
-    alpha: 1,
-    angle: Math.PI / 6
-  });
-}
+		function draw() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.fillStyle = '#050a1a';
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			stars.forEach(s => {
+				s.a += s.speed;
+				const alpha = (Math.sin(s.a) + 1) / 2 * 0.8 + 0.1;
+				ctx.beginPath();
+				ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+				ctx.fillStyle = `rgba(186,230,253,${alpha})`;
+				ctx.fill();
+			});
+			for (let i = shootingStars.length - 1; i >= 0; i--) {
+				const s = shootingStars[i];
+				ctx.beginPath();
+				ctx.moveTo(s.x, s.y);
+				ctx.lineTo(s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
+				ctx.strokeStyle = `rgba(125,211,252,${s.alpha})`;
+				ctx.lineWidth = 1.5;
+				ctx.stroke();
+				s.x += Math.cos(s.angle) * s.speed * 2;
+				s.y += Math.sin(s.angle) * s.speed * 2;
+				s.alpha -= 0.02;
+				if (s.alpha <= 0) shootingStars.splice(i, 1);
+			}
+			requestAnimationFrame(draw);
+		}
+		draw();
 
-setInterval(addShootingStar, 4000);
+		const path = window.location.pathname;
+		document.getElementById('path-display').textContent = path === '/' ? '/this-page' : path;
 
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#050a1a';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+		async function fetchISS() {
+			try {
+				const res = await fetch('https://api.wheretheiss.at/v1/satellites/25544');
+				const d = await res.json();
+				const lat = parseFloat(d.latitude).toFixed(3);
+				const lon = parseFloat(d.longitude).toFixed(3);
+				const alt = parseFloat(d.altitude).toFixed(1);
+				const vel = parseFloat(d.velocity).toFixed(1);
+				document.getElementById('iss-lat').textContent = lat + '°';
+				document.getElementById('iss-lon').textContent = lon + '°';
+				document.getElementById('iss-alt').textContent = alt + ' km';
+				document.getElementById('iss-vel').textContent = vel + ' km/h';
+			} catch (e) {
+				document.getElementById('iss-lat').textContent = 'unavailable';
+			}
+		}
 
-  stars.forEach(s => {
-    s.a += s.speed;
-    const alpha = (Math.sin(s.a) + 1) / 2 * 0.8 + 0.1;
-    ctx.beginPath();
-    ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(186,230,253,${alpha})`;
-    ctx.fill();
-  });
-
-  for (let i = shootingStars.length - 1; i >= 0; i--) {
-    const s = shootingStars[i];
-    ctx.beginPath();
-    ctx.moveTo(s.x, s.y);
-    ctx.lineTo(s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
-    ctx.strokeStyle = `rgba(125,211,252,${s.alpha})`;
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-    s.x += Math.cos(s.angle) * s.speed * 2;
-    s.y += Math.sin(s.angle) * s.speed * 2;
-    s.alpha -= 0.02;
-    if (s.alpha <= 0) shootingStars.splice(i, 1);
-  }
-
-  requestAnimationFrame(draw);
-}
-draw();
-
-const path = window.location.pathname;
-document.getElementById('path-display').textContent = path === '/' ? '/this-page' : path;
-
-let pct = 0;
-setInterval(() => {
-  pct = (pct + 1) % 100;
-  const lat = (Math.sin(pct * 0.1) * 51.6).toFixed(3);
-  const lon = (pct * 3.7 % 360 - 180).toFixed(3);
-  const alt = (408 + Math.sin(pct * 0.2) * 4).toFixed(0);
-  const sig = Math.max(0, Math.floor(Math.sin(pct * 0.15) * 30));
-  document.getElementById('coords').textContent =
-    `COORD: ${lat}°N ${lon}°E · ALT: ${alt}km · SIGNAL: ${sig}%`;
-}, 200);
-</script>
+		fetchISS();
+		setInterval(fetchISS, 5000);
+	</script>
 </body>
+
 </html>
