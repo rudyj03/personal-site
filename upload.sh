@@ -1,1 +1,1 @@
-aws s3 cp . s3://rudyjadeja-dot-com --recursive --exclude ".git*" --exclude ".DS_Store"
+aws s3 sync . s3://rudyjadeja-dot-com --exclude ".git*" --exclude ".DS_Store" --delete
