@@ -1,1 +1,0 @@
-curl 'https://merchologysolutions.com/.netlify/functions/fetchBaseProducts' -H 'content-type: application/json' --data-raw '{"query":""}' | jq '[.[] | {title, totalInventory, image}]' > products.json
